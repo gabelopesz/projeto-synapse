@@ -1,0 +1,17 @@
+# Core Dependencies
+flask==3.0.0
+flask-cors==4.0.0
+
+# Database Connectors
+neo4j==5.14.1
+chromadb==0.5.23
+
+# ML & Embeddings
+sentence-transformers==3.0.1
+torch>=2.2.0
+
+# Utilities
+python-dotenv==1.0.0
+
+# Compatibility
+numpy<2.0.0

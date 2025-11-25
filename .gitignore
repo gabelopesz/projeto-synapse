@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# Databases - Armazenamento local
+chroma_db/
+neo4j_data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Cache de modelos Sentence Transformers
+.cache/
+models/
+
+# Documentação desnecessária para execução
+TUTORIAL.md
+ARCHITECTURE.md
+CYPHER_QUERIES.md
+STATUS.md
+CORREÇÃO_SIMILARIDADE.md
+QUICKSTART.md
+
+# Scripts de teste e utilitários
+example_test.py
+reset_chromadb.py
+
+# Bash scripts (descomente se quiser versionar)
+# setup.sh
+# start.sh
+# run.sh
