@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapse - Organizador Semântico de Anotações</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🧠 Synapse</h1>
+                <p class="subtitle">Organizador Semântico de Anotações de Estudo</p>
+            </div>
+            <div class="stats" id="stats">
+                <span class="stat-item">📝 <span id="total-notes">0</span> anotações</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('search')">🔍 Buscar</button>
+                <button class="tab-button" onclick="showTab('create')">➕ Nova Anotação</button>
+                <button class="tab-button" onclick="showTab('list')">📚 Minhas Anotações</button>
+            </div>
+
+            <!-- Tab: Buscar -->
+            <div id="search-tab" class="tab-content active">
+                <div class="search-section">
+                    <h2>Busca Semântica</h2>
+                    <p class="info-text">Digite uma pergunta ou conceito. O sistema encontrará anotações relacionadas!</p>
+                    
+                    <div class="search-form">
+                        <textarea 
+                            id="search-query" 
+                            placeholder="Ex: Como funciona a herança em Java?"
+                            rows="3"
+                        ></textarea>
+                        <div class="form-row">
+                            <label>
+                                Resultados:
+                                <input type="number" id="search-limit" value="5" min="1" max="20">
+                            </label>
+                            <button onclick="searchNotes()" class="btn btn-primary">
+                                🔍 Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="search-results" class="results-container"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Nova Anotação -->
+            <div id="create-tab" class="tab-content">
+                <div class="create-section">
+                    <h2>Nova Anotação</h2>
+                    
+                    <form id="note-form" onsubmit="createNote(event)">
+                        <div class="form-group">
+                            <label for="note-title">Título *</label>
+                            <input 
+                                type="text" 
+                                id="note-title" 
+                                placeholder="Ex: Herança em Java"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="note-content">Conteúdo *</label>
+                            <textarea 
+                                id="note-content" 
+                                placeholder="Digite suas anotações aqui..."
+                                rows="10"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="note-tags">Tags (separadas por vírgula)</label>
+                            <input 
+                                type="text" 
+                                id="note-tags" 
+                                placeholder="Ex: java, poo, herança"
+                            >
+                        </div>
+
+                        <button type="submit" class="btn btn-success">
+                            💾 Salvar Anotação
+                        </button>
+                    </form>
+
+                    <div id="create-feedback" class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Minhas Anotações -->
+            <div id="list-tab" class="tab-content">
+                <div class="list-section">
+                    <div class="section-header">
+                        <h2>Minhas Anotações</h2>
+                        <button onclick="loadAllNotes()" class="btn btn-secondary">
+                            🔄 Recarregar
+                        </button>
+                    </div>
+                    
+                    <div id="notes-list" class="notes-grid"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                🧠 Synapse v1.0 | 
+                Persistência Poliglota: 
+                <strong>Neo4j</strong> (Grafo) + 
+                <strong>ChromaDB</strong> (Vetorial)
+            </p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processando...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
